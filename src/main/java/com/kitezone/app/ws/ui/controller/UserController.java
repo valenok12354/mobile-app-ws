@@ -41,9 +41,7 @@ public class UserController {
                           @RequestParam(value = "sort", required = false, defaultValue = "desc") String sort)
 
 //        throw new UserServiceException("my exeption trown");
-    {
-        return "ger user page " + page + "limit " + limit + "sort " + sort;
-    }
+
 
 
     @GetMapping(path = "/{userId}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
