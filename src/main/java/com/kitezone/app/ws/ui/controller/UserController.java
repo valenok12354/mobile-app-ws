@@ -41,14 +41,14 @@ public class UserController {
                           @RequestParam(value = "sort", required = false, defaultValue = "desc") String sort)
 
 //        throw new UserServiceException("my exeption trown");
-
+    {
+        return "ger user page " + page + "limit " + limit + "sort " + sort;
+    }
 
 
     @GetMapping(path = "/{userId}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<UserRest> getUser(@PathVariable String userId) {
-        if (users.containsKey(userId)) {
-            return new ResponseEntity<>(users.get(userId), HttpStatus.OK);
-        } else return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return userService.getUser(userId);
     }
 
     @PostMapping(produces = {MediaType.APPLICATION_XML_VALUE,
@@ -58,24 +58,24 @@ public class UserController {
     public ResponseEntity<UserRest> createUser(@Valid @RequestBody UserDetailsRequest userDetail) {
 
         UserRest returnValue = userService.createUser(userDetail);
+
         return new ResponseEntity<>(returnValue, HttpStatus.OK);
     }
 
-    @PutMapping(path = "/{userId}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-    public UserRest updateUser(@PathVariable String userId, @RequestBody UpdateUserDetails userDetail) {
-        UserRest updateUserDetail = users.get(userId);
-        updateUserDetail.setName(userDetail.getFirstName());
-        updateUserDetail.setLastName(userDetail.getLastName());
-        users.put(userId, updateUserDetail);
-        return updateUserDetail;
-    }
-
-    @DeleteMapping(path = "/{userId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable String userId) {
-        UserRest returnValue;
-        users.remove(userId);
-        return ResponseEntity.noContent()
-                             .build();
-    }
-
+//    @PutMapping(path = "/{userId}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+//    public UserRest updateUser(@PathVariable String userId, @RequestBody UpdateUserDetails userDetail) {
+//        UserRest updateUserDetail = users.get(userId);
+//        updateUserDetail.setName(userDetail.getFirstName());
+//        updateUserDetail.setLastName(userDetail.getLastName());
+//        users.put(userId, updateUserDetail);
+//        return updateUserDetail;
+//    }
+//
+//    @DeleteMapping(path = "/{userId}")
+//    public ResponseEntity<Void> deleteUser(@PathVariable String userId) {
+//        UserRest returnValue;
+//        users.remove(userId);
+//        return ResponseEntity.noContent()
+//                             .build();
+//    }
 }
