@@ -1,4 +1,4 @@
-package com.kitezone.app.ws.exeptions;
+package com.kitezone.app.ws.exceptions;
 
 public class UserServiceException extends RuntimeException {
 

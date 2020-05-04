@@ -4,6 +4,8 @@ import com.kitezone.app.ws.ui.model.request.UpdateUserDetails;
 import com.kitezone.app.ws.userservice.UserService;
 import com.kitezone.app.ws.ui.model.request.UserDetailsRequest;
 import com.kitezone.app.ws.ui.model.responce.UserRest;
+import com.kitezone.app.ws.utils.Utils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -16,6 +18,12 @@ import java.util.UUID;
 public class UserServiceImpl implements UserService {
 
     Map<String, UserRest> users;
+    Utils utils;
+
+    @Autowired
+    public UserServiceImpl(Utils utils) {
+        this.utils = utils;
+    }
 
     @Override
     public UserRest createUser(UserDetailsRequest userDetail) {
@@ -23,8 +31,7 @@ public class UserServiceImpl implements UserService {
         returnValue.setLastName(userDetail.getLastName());
         returnValue.setName(userDetail.getFirstName());
         returnValue.setMail(userDetail.getEmail());
-        String userId = UUID.randomUUID()
-                            .toString();
+        String userId = utils.getUuid();
         returnValue.setUserId(userId);
 
         if (users == null) {

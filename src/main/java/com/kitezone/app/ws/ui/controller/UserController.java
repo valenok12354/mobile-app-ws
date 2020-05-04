@@ -1,11 +1,9 @@
 package com.kitezone.app.ws.ui.controller;
 
-import com.kitezone.app.ws.exeptions.UserServiceException;
 import com.kitezone.app.ws.ui.model.request.UpdateUserDetails;
 import com.kitezone.app.ws.ui.model.request.UserDetailsRequest;
 import com.kitezone.app.ws.ui.model.responce.UserRest;
 import com.kitezone.app.ws.userservice.UserService;
-import com.kitezone.app.ws.userserviceimpl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,9 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 
 @RestController

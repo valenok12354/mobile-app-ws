@@ -1,4 +1,4 @@
-package com.kitezone.app.ws.exeptions;
+package com.kitezone.app.ws.exceptions;
 
 import com.kitezone.app.ws.ui.model.responce.ErrorMessage;
 import org.springframework.http.HttpHeaders;
@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.Date;
 
 @ControllerAdvice
-public class ExeptionHandler extends ResponseEntityExceptionHandler {
+public class ExсeptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {Exception.class})
     public ResponseEntity<Object> handleAnyException(Exception ex, WebRequest webRequest) {
