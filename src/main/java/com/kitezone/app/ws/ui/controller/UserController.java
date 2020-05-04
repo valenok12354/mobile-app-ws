@@ -58,24 +58,18 @@ public class UserController {
     public ResponseEntity<UserRest> createUser(@Valid @RequestBody UserDetailsRequest userDetail) {
 
         UserRest returnValue = userService.createUser(userDetail);
-
         return new ResponseEntity<>(returnValue, HttpStatus.OK);
     }
 
-//    @PutMapping(path = "/{userId}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-//    public UserRest updateUser(@PathVariable String userId, @RequestBody UpdateUserDetails userDetail) {
-//        UserRest updateUserDetail = users.get(userId);
-//        updateUserDetail.setName(userDetail.getFirstName());
-//        updateUserDetail.setLastName(userDetail.getLastName());
-//        users.put(userId, updateUserDetail);
-//        return updateUserDetail;
-//    }
-//
-//    @DeleteMapping(path = "/{userId}")
-//    public ResponseEntity<Void> deleteUser(@PathVariable String userId) {
-//        UserRest returnValue;
-//        users.remove(userId);
-//        return ResponseEntity.noContent()
-//                             .build();
-//    }
+    @PutMapping(path = "/{userId}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+    public UserRest updateUser(@PathVariable String userId, @RequestBody UpdateUserDetails userDetail) {
+        return userService.updateUser(userId, userDetail);
+    }
+
+    @DeleteMapping(path = "/{userId}")
+    public ResponseEntity<Void> deleteUser(@PathVariable String userId) {
+        userService.deleteUser(userId);
+        return ResponseEntity.noContent()
+                             .build();
+    }
 }

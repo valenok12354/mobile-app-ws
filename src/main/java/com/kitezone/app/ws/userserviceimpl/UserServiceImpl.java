@@ -1,12 +1,12 @@
 package com.kitezone.app.ws.userserviceimpl;
 
+import com.kitezone.app.ws.ui.model.request.UpdateUserDetails;
 import com.kitezone.app.ws.userservice.UserService;
 import com.kitezone.app.ws.ui.model.request.UserDetailsRequest;
 import com.kitezone.app.ws.ui.model.responce.UserRest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +38,21 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<UserRest> getUser(String userId) {
         if (users.containsKey(userId)) {
             return new ResponseEntity<>(users.get(userId), HttpStatus.NO_CONTENT);
-        } else return new ResponseEntity<>(HttpStatus.BANDWIDTH_LIMIT_EXCEEDED);
+        } else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
+    }
+
+    @Override
+    public UserRest updateUser(String userId, UpdateUserDetails userDetail) {
+        UserRest updateUserDetail = users.get(userId);
+        updateUserDetail.setName(userDetail.getFirstName());
+        updateUserDetail.setLastName(userDetail.getLastName());
+        users.put(userId, updateUserDetail);
+        return updateUserDetail;
+    }
+
+    @Override
+    public void deleteUser(String userId) {
+        users.remove(userId);
     }
 }
