@@ -1,6 +1,7 @@
 package com.kitezone.app.ws.exceptions;
 
 import com.kitezone.app.ws.ui.model.responce.ErrorMessage;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
